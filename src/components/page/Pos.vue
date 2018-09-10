@@ -2,6 +2,7 @@
   <div class="pos clearfloat">
     <div class="cashierLeft">
         456
+        <p>名字：{{name}}</p>
     </div>
     <div class="cashierRight">
 
@@ -10,13 +11,34 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'pos',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      name:''
     }
-  }
+  },
+  beforeCreate() {
+    let _this = this;
+    axios({
+      method:'get',
+      url:'/api/news/get',
+      params:{
+        num:'40',
+        appkey: 'dd5d4db0ce75aa07'
+      }
+    })
+    .then(function(res){
+      console.log(res);
+      
+    })
+    .catch(function(err){
+      console.log(err);
+    })
+  },
 }
 </script>
 
